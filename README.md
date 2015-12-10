@@ -11,11 +11,13 @@ The goals of this project are two-fold. One is to examine and compare the predic
 
 
 Refer to individual folders for description / explanation of content:
-</h4>doc</h4>
+<bold>doc</bold>
 <p>Contains files that describe the system & how it works</p>
-</h4>src</h4>
+<bold>src</bold>
 <p>Contains the code & libraries</p>
-</h4>data</h4>
+<bold>data</bold>
 <p>Contains otu tables, beta-diversity files, and taxa summaries</p>
-</h4>pub</h4>
+<bold>results</bold>
+<p>Contains output of running kernel-method experiments (tables, graphs, etc)</p>
+<bold>pub</bold>
 <p>Contains files relevant to publications from this project</p>
