@@ -29,7 +29,7 @@ Note that these runs can be batched into shell scripts (.sh).
 Refer to individual folders for description / explanation of content:
 ######doc
 Contains files that describe the system & how it works
-######src
+######src 
 Contains the code & libraries
 ######data
 Contains otu tables, beta-diversity files, and taxa summaries
