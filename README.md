@@ -29,6 +29,8 @@ Note that these runs can be batched into shell scripts (.sh).
 Refer to individual folders for description / explanation of content:
 ######doc
 Contains files that describe the system & how it works
+######examples
+Contains sample .sh scripts that run the classification tests for various datasets/variables
 ######src 
 Contains the code & libraries
 ######data
