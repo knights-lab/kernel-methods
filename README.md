@@ -7,7 +7,8 @@ The goals of this project are two-fold. One is to examine and compare the predic
 The kernel-methods project employs R scripts to run cross-validated predictive performance analysis of the classification of variables of different dataset otu files. In english, it means for example we want to see how well different kernel-methods can predict the value of a certain variable (eg whether or not you are obese) based on your microbiota.
 
 ###Usage
-The main file is **runKerns.R**. 
+The main file is **runKerns.R**. This is really all you should need for actually running experiments. The syntax is as follows (assumes your working directory is the same as runKerns.r):
+`Rscript runKerns 'path/to/mapping_file.txt' 'path/to/taxa_summary.txt' 'path/to/unifrac_file.txt' 'path/to/bray_curtis_file.txt' filters variable positive_classes negative_classes 'path/to/output' `
 
 Refer to individual folders for description / explanation of content:
 ######doc
