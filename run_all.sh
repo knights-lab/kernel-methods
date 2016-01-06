@@ -1,0 +1,10 @@
+screen -S GeversCD -d -m ./examples/Gevers_CDvsNo.sh
+screen -S GeversAntibiotics -d -m ./examples/Gevers_AntibioVsNone_DIAGeqYes.sh
+screen -S GlobalGutUSvsNon -d -m ./examples/GlobalGut_USvsNon_AgeOver3.sh
+screen -S GlobalGutGender -d -m ./exmaples/GlobalGut_Gender.sh
+screen -S GlobalGutGender -d -m ./exmaples/HMP_SupraVsSubPlaque.sh
+screen -S GlobalGutGender -d -m ./exmaples/HMP_TongueVsSupraPlaque.sh
+screen -S GlobalGutGender -d -m ./exmaples/HMP_Gender.sh
+screen -S GlobalGutGender -d -m ./exmaples/Sokol_HealthyvsChrons.sh
+screen -S GlobalGutGender -d -m ./exmaples/Sokol_HealthyvsNot.sh
+screen -S GlobalGutGender -d -m ./exmaples/Sokol_HealthyvsColitis.sh

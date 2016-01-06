@@ -39,10 +39,10 @@ print(negativeClasses)
 #filterstr = "list(op='>', var='AGE', val=50)"
 
 
-map = read.table(mapFile,sep='\t',head=T,row=1,check=F,comment='')
-otus = read.table(otuFile,sep='\t',head=T,row=1,check=F,comment='')
-uni.dist = read.table(uniFile,sep='\t',head=T,row=1,check=F,comment='')
-bc.dist = read.table(bcFile,sep='\t',head=T,row=1,check=F,comment='')
+map = read.table(mapFile,sep='\t',head=T,row=1,check=F,comment='', quote='"')
+otus = read.table(otuFile,sep='\t',head=T, skip=1,row=1,check=F,comment='', quote='"')
+uni.dist = read.table(uniFile,sep='\t',head=T,row=1,check=F,comment='', quote='"')
+bc.dist = read.table(bcFile,sep='\t',head=T,row=1,check=F,comment='', quote='"')
 #switch otus to have points as rows instead of columns
 otus = t(otus)
 
@@ -53,6 +53,8 @@ print(dim(map))
 if(nchar(filterstr) > 0){
 	filterlist = eval(parse(text=filterstr))
 	filterfunstr = paste("function(m){as.",class(filterlist$val),"(","as.character(m)",")",filterlist$op,as.character(filterlist$val),"}", sep='')
+	print('filter function: ')
+	print(filterfunstr)
 	filterfun = eval(parse(text=filterfunstr))
 	map.filter.logic = apply(as.matrix(map[,filterlist$var]),1,filterfun)
 	map = map[map.filter.logic,]

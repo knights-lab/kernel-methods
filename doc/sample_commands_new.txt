@@ -1,0 +1,16 @@
+summarize_taxa.py -i otutable.biom -o taxa -L "2,3,4,5,6,7"
+
+filter_samples_from_otu_table.py -i otutable.biom -m map.txt -s 'AGE_GROUP:Adult;Country:*,!GAZ:United States of America'
+
+biom convert -b -i otutable.biom -o otutable.txt
+
+beta_diversity.py -i Gevers_Taxa/Gevers_CCFA_RISK_study_1939_gg_ref_13_8_L6.biom -m  bray_curtis -o bray_curtis/
+
+beta_diversity.py -i Gevers_CCFA_RISK_study_1939_gg_ref_13_8.biom -m weighted_unifrac -o gevers_unifrac/ -t ../src/97_otus.tree
+
+Rscript runKerns.r 'data/mapping/Yatsunenko_global_gut_study_850_mapping_file.txt' 'data/Yatsunenko_Taxa/Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt' 'data/unifrac/weighted_unifrac_Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt' "list(op='>', var='AGE', val=3)" 'COUNTRY' "c('GAZ:United States of America')" "c('GAZ:Malawi', 'GAZ:Venezuela')" "GlobalGut_WesternVsNon_AgeOver3"
+
+Rscript runKerns.r 'data/mapping/Yatsunenko_global_gut_study_850_mapping_file.txt' 'data/Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt' 'data/unifrac/weighted_unifrac_Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt' 'SEX' "c('female')" "c('male')"
+
+Rscript src/runKerns.r 'data/mapping/Gevers_CCFA_RISK_study_1939_mapping_file.txt' 'data/otu/Gevers_CCFA_RISK_study_1939_gg_ref_13_8.txt' 'data/unifrac/weighted_unifrac_Gevers_CCFA_RISK_study_1939_gg_ref_13_8.txt' 'ANTIBIOTICS' "c('No')" "c('None','yes')"
+
