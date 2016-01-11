@@ -94,7 +94,7 @@ l2.outcomes = factor(l2.outcomes)
 names(l2.outcomes) = outcome.names
 
 #number of cross-validation folds to do
-nfolds = 10
+nfolds = 4
 
 #generate random sample indices
 uni.sampler = sample(1:nrow(uni.dist),nrow(uni.dist),replace=FALSE)
