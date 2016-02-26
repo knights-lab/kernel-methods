@@ -6,10 +6,13 @@ source('src/model.svm.r')
 source('src/train.r')
 #outer cross-validation loop
 source('src/cvLoop.r')
+source('src/balancedFolds.r')
 library('caret')
 library('parallel')
 library('MASS')
 library('RColorBrewer')
+options(error=traceback)
+#on.exit(traceback())
 # consider using ROCR
 #DATA SETUP 
 #----------
@@ -94,24 +97,28 @@ l2.outcomes = factor(l2.outcomes)
 names(l2.outcomes) = outcome.names
 
 #number of cross-validation folds to do
-nfolds = 4
+nfolds = 10
 
 #generate random sample indices
-uni.sampler = sample(1:nrow(uni.dist),nrow(uni.dist),replace=FALSE)
-bc.sampler = sample(1:nrow(bc.dist),nrow(bc.dist),replace=FALSE)
-l2.sampler = sample(1:nrow(l2.dist),nrow(l2.dist),replace=FALSE)
-otu.sampler = sample(1:nrow(otus), nrow(otus), replace=FALSE)
+filtered.var = factor(map[,variable])
+print(levels(filtered.var))
+fold.ids = balanced.folds(filtered.var,nfolds)
+nfolds = max(as.numeric(levels(as.factor(fold.ids))))
+#uni.sampler = sample(1:nrow(uni.dist),nrow(uni.dist),replace=FALSE)
+#bc.sampler = sample(1:nrow(bc.dist),nrow(bc.dist),replace=FALSE)
+#l2.sampler = sample(1:nrow(l2.dist),nrow(l2.dist),replace=FALSE)
+#otu.sampler = sample(1:nrow(otus), nrow(otus), replace=FALSE)
 #how many samples per holdout?
-uni.part = nrow(bc.dist)%/%nfolds
-bc.part = nrow(uni.dist)%/%nfolds
-l2.part = nrow(uni.dist)%/%nfolds
-otu.part = nrow(otus)%/%nfolds
+#uni.part = nrow(bc.dist)%/%nfolds
+#bc.part = nrow(uni.dist)%/%nfolds
+#l2.part = nrow(uni.dist)%/%nfolds
+#otu.part = nrow(otus)%/%nfolds
 
 numMethods = 3 #svm, knn, rf
 numKernels = 3 #l2, unifrac, bray_curtis, none (raw)
 #true positives, true negatives, false positives, false negatives
 results = matrix(0,0,7)
-colnames(results) = c('method','TP','TN','FP','FN','pearson','best.model')
+colnames(results) = c('method','TP','TN','FP','FN','performance','best.model')
 
 clust = makeCluster((detectCores()-1))
 #run in parallel
@@ -132,34 +139,32 @@ clusterExport(clust,"bc.dist")
 clusterExport(clust,"bc.sim")
 clusterExport(clust,"l2.dist")
 clusterExport(clust,"l2.outcomes")
-clusterExport(clust,"uni.sampler")
-clusterExport(clust,"bc.sampler")
-clusterExport(clust,"l2.sampler")
-clusterExport(clust,"otu.sampler")
-clusterExport(clust,"uni.part")
-clusterExport(clust,"bc.part")
-clusterExport(clust,"l2.part")
-clusterExport(clust,"otu.part")
+#clusterExport(clust,"uni.sampler")
+#clusterExport(clust,"bc.sampler")
+#clusterExport(clust,"l2.sampler")
+#clusterExport(clust,"otu.sampler")
+#clusterExport(clust,"uni.part")
+#clusterExport(clust,"bc.part")
+#clusterExport(clust,"l2.part")
+#clusterExport(clust,"otu.part")
+clusterExport(clust,"fold.ids")
 clusterExport(clust,"numMethods")
 clusterExport(clust,"numKernels")
 clusterExport(clust,"variable")
 clusterExport(clust,"positiveClasses")
 clusterExport(clust,"variable")
-res = parLapply(clust, 0:(nfolds-1), doOuterCV)
-ix = 1
+res = parLapply(clust, 1:nfolds, doOuterCV)
+#for(i in 1:nfolds){
+#	doOuterCV(i)
+#}
 for(r in res){
 	results = rbind(results,r)
 }
 results = results[order(results[,1]),]
-pearson.means = c()
-kern.methods = as.factor(results[,1])
-for(l in levels(kern.methods)){
-	pearson.means[[l]] = mean(as.numeric(results[results[,1]==l,6]))
-}
 png(paste(outid,'_results.png'))
 par(mar=c(8,4,2,2))
 midpoints = barplot(pearson.means, las=2, ylim=c(min(pearson.means)-0.02, max(pearson.means)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
 text(midpoints,round(pearson.means,4),labels=round(pearson.means,4))
 axis(1,at=c(-1e6, 1e6),labels=NA)
 dev.off()
-write.matrix(results,paste(outid,'_results.txt'))
+write.csv(results,file=paste(outid,'_results.txt'))

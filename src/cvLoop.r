@@ -1,14 +1,15 @@
 doOuterCV = function(n){
 	results = matrix(0,10,7)
 	colnames(results) = c('method','TP','TN','FP','FN','pearson','best.model')
-	inc = 1 +  n * uni.part
+	#inc = 1 +  n * uni.part
 	index = 1
 	print (n)
 	#UNIFRAC
 	print('UNIFRAC')
 	#----------
 	#grab the holdout
-	holdout.logic = 1:nrow(uni.sim) %in% uni.sampler[inc:((inc+uni.part)-1)]
+	#holdout.logic = 1:nrow(uni.sim) %in% uni.sampler[inc:((inc+uni.part)-1)]
+	holdout.logic = fold.ids==n
 	holdout = uni.sim[holdout.logic,]
 	#grab the training set
 	uni.training.samples = uni.sim[!holdout.logic,]
@@ -25,10 +26,13 @@ doOuterCV = function(n){
 	#tune params with cross-validation
 	#TODO make other spots match this syntax
 	uni.svm.model = tune( ranges = list(kernel=1:3,C=2^(-2:3)),svm.model, uni.training.samples,uni.training.outcomes)$best.model
+	print(paste('post svm tuning in fold ',n))
 	#uni.svm.model = ksvm(as.kernelMatrix(uni.training.samples),uni.training.outcomes,kernel='matrix')
 	svm.prediction = predict(uni.svm.model,uni.validation.samples)
+	print(paste('post svm prediction in fold ',n))
 	levels(svm.prediction) = union(levels(svm.prediction),levels(uni.validation.outcomes))
 	levels(uni.validation.outcomes) = union(levels(svm.prediction),levels(uni.validation.outcomes))
+	print(paste('post svm stuff in fold ',n))
 	res = confusionMatrix(svm.prediction,uni.validation.outcomes)
 	pearsons = cor(as.numeric(svm.prediction),as.numeric(uni.validation.outcomes))
 	results[index,] = c('SVM.unifrac',res$table[1,1],res$table[2,2],res$table[1,2],res$table[2,1], pearsons, paste('kernel:',uni.svm.model$kernel,'C:',uni.svm.model$svm@param$C))
@@ -66,7 +70,7 @@ doOuterCV = function(n){
 	print('BRAY_CURTIS')
 	#----------
 	#grab the holdout
-	holdout.logic = 1:nrow(bc.sim) %in% bc.sampler[inc:((inc+bc.part)-1)]
+	#holdout.logic = 1:nrow(bc.sim) %in% bc.sampler[inc:((inc+bc.part)-1)]
 	holdout = bc.sim[holdout.logic,]
 	#grab the training set
 	bc.training.samples = bc.sim[!holdout.logic,]
@@ -126,7 +130,7 @@ doOuterCV = function(n){
 	print('L2')
 	#-------
 	#grab the holdout
-	holdout.logic = c(1:nrow(l2.dist)) %in% l2.sampler[inc:((inc+l2.part)-1)]
+	#holdout.logic = c(1:nrow(l2.dist)) %in% l2.sampler[inc:((inc+l2.part)-1)]
 	holdout = l2.dist[holdout.logic,]
 	#grab the training set
 	l2.training.samples = l2.dist[!holdout.logic,]
@@ -176,7 +180,7 @@ doOuterCV = function(n){
 	#RF
 	print('--rf')
 	#grab the holdout
-	holdout.logic = 1:nrow(otus) %in% otu.sampler[inc:((inc+otu.part)-1)]
+	#holdout.logic = 1:nrow(otus) %in% otu.sampler[inc:((inc+otu.part)-1)]
 	holdout = otus[holdout.logic,]
 	#grab the training set
 	otu.training.samples = otus[!holdout.logic,]

@@ -1,0 +1,101 @@
+method TP TN FP FN pearson best.model
+KNN.bc                     8                          2                          0                          0                          1                          k: 1                      
+KNN.bc                     8                          2                          0                          0                          1                          k: 1                      
+KNN.bc                     7                          2                          0                          1                          0.763762615825973          k: 1                      
+KNN.bc                     7                          1                          1                          1                          0.375                      k: 1                      
+KNN.bc                     8                          2                          0                          0                          1                          k: 1                      
+KNN.bc                     8                          1                          1                          0                          0.666666666666667          k: 3                      
+KNN.bc                     8                          0                          1                          0                          NA                         k: 1                      
+KNN.bc                     7                          1                          0                          1                          0.661437827766148          k: 1                      
+KNN.bc                     6                          0                          1                          1                          -0.142857142857143         k: 1                      
+KNN.bc                     6                          1                          0                          0                          1                          k: 1                      
+KNN.l2                     8                          2                          0                          0                          1                          k: 1                      
+KNN.l2                     7                          2                          0                          1                          0.763762615825973          k: 1                      
+KNN.l2                     8                          1                          1                          0                          0.666666666666667          k: 1                      
+KNN.l2                     8                          2                          0                          0                          1                          k: 1                      
+KNN.l2                     7                          2                          0                          1                          0.763762615825973          k: 2                      
+KNN.l2                     8                          2                          0                          0                          1                          k: 1                      
+KNN.l2                     7                          1                          0                          1                          0.661437827766148          k: 1                      
+KNN.l2                     8                          1                          0                          0                          1                          k: 1                      
+KNN.l2                     7                          0                          1                          0                          NA                         k: 1                      
+KNN.l2                     6                          0                          1                          0                          NA                         k: 1                      
+KNN.unifrac                8                          2                          0                          0                          1                          k: 1                      
+KNN.unifrac                8                          2                          0                          0                          1                          k: 1                      
+KNN.unifrac                8                          1                          1                          0                          0.666666666666667          k: 1                      
+KNN.unifrac                8                          1                          1                          0                          0.666666666666667          k: 1                      
+KNN.unifrac                7                          2                          0                          1                          0.763762615825973          k: 1                      
+KNN.unifrac                8                          1                          1                          0                          0.666666666666667          k: 1                      
+KNN.unifrac                8                          0                          1                          0                          NA                         k: 1                      
+KNN.unifrac                7                          1                          0                          1                          0.661437827766148          k: 1                      
+KNN.unifrac                7                          0                          1                          0                          NA                         k: 1                      
+KNN.unifrac                6                          1                          0                          0                          1                          k: 1                      
+RF.bc                      8                          0                          2                          0                          1                                                    
+RF.bc                      8                          0                          2                          0                          1                                                    
+RF.bc                      8                          0                          2                          0                          0.763762615825973                                    
+RF.bc                      8                          0                          2                          0                          0.375                                                
+RF.bc                      8                          1                          1                          0                          1                                                    
+RF.bc                      8                          0                          2                          0                          0.666666666666667                                    
+RF.bc                      8                          0                          1                          0                          NA                                                   
+RF.bc                      8                          0                          1                          0                          0.661437827766148                                    
+RF.bc                      6                          0                          1                          1                          -0.142857142857143                                   
+RF.bc                      6                          0                          1                          0                          1                                                    
+RF.l2                      8                          1                          1                          0                          1                                                    
+RF.l2                      7                          1                          1                          1                          0.763762615825973                                    
+RF.l2                      8                          1                          1                          0                          0.666666666666667                                    
+RF.l2                      8                          0                          2                          0                          1                                                    
+RF.l2                      8                          2                          0                          0                          0.763762615825973                                    
+RF.l2                      8                          2                          0                          0                          1                                                    
+RF.l2                      8                          1                          0                          0                          0.661437827766148                                    
+RF.l2                      8                          1                          0                          0                          1                                                    
+RF.l2                      7                          0                          1                          0                          NA                                                   
+RF.l2                      6                          1                          0                          0                          NA                                                   
+RF.otu                     8                          1                          1                          0                          1                                                    
+RF.otu                     8                          0                          2                          0                          0.763762615825973                                    
+RF.otu                     8                          1                          1                          0                          0.666666666666667                                    
+RF.otu                     8                          0                          2                          0                          1                                                    
+RF.otu                     8                          0                          2                          0                          0.763762615825973                                    
+RF.otu                     8                          0                          2                          0                          1                                                    
+RF.otu                     8                          0                          1                          0                          0.661437827766148                                    
+RF.otu                     8                          0                          1                          0                          1                                                    
+RF.otu                     7                          0                          1                          0                          NA                                                   
+RF.otu                     6                          0                          1                          0                          NA                                                   
+RF.unifrac                 8                          0                          2                          0                          1                                                    
+RF.unifrac                 8                          0                          2                          0                          1                                                    
+RF.unifrac                 8                          0                          2                          0                          0.666666666666667                                    
+RF.unifrac                 8                          0                          2                          0                          0.666666666666667                                    
+RF.unifrac                 8                          0                          2                          0                          0.763762615825973                                    
+RF.unifrac                 8                          0                          2                          0                          0.666666666666667                                    
+RF.unifrac                 8                          0                          1                          0                          NA                                                   
+RF.unifrac                 8                          0                          1                          0                          0.661437827766148                                    
+RF.unifrac                 7                          0                          1                          0                          NA                                                   
+RF.unifrac                 6                          0                          1                          0                          1                                                    
+SVM.bc                     8                          1                          1                          0                          0.666666666666667          kernel: vanilladot C: 1   
+SVM.bc                     7                          1                          1                          1                          0.375                      kernel: vanilladot C: 2   
+SVM.bc                     8                          0                          2                          0                          NA                         kernel: rbfdot C: 4       
+SVM.bc                     8                          1                          1                          0                          0.666666666666667          kernel: vanilladot C: 1   
+SVM.bc                     5                          1                          1                          3                          0.102062072615966          kernel: vanilladot C: 4   
+SVM.bc                     8                          1                          1                          0                          0.666666666666667          kernel: vanilladot C: 2   
+SVM.bc                     8                          0                          1                          0                          NA                         kernel: vanilladot C: 1   
+SVM.bc                     8                          0                          1                          0                          NA                         kernel: vanilladot C: 2   
+SVM.bc                     7                          0                          1                          0                          NA                         kernel: vanilladot C: 8   
+SVM.bc                     6                          1                          0                          0                          1                          kernel: vanilladot C: 1   
+SVM.l2                     8                          2                          0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     7                          2                          0                          1                          0.763762615825973          kernel: vanilladot C: 0.25
+SVM.l2                     8                          2                          0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     8                          2                          0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     8                          2                          0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     8                          2                          0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     8                          1                          0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     8                          1                          0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     7                          0                          1                          0                          NA                         kernel: vanilladot C: 0.25
+SVM.l2                     6                          0                          1                          0                          NA                         kernel: vanilladot C: 0.25
+SVM.unifrac                8                          2                          0                          0                          1                          kernel: vanilladot C: 4   
+SVM.unifrac                7                          2                          0                          1                          0.763762615825973          kernel: vanilladot C: 2   
+SVM.unifrac                8                          1                          1                          0                          0.666666666666667          kernel: vanilladot C: 1   
+SVM.unifrac                8                          0                          2                          0                          NA                         kernel: vanilladot C: 0.5 
+SVM.unifrac                8                          2                          0                          0                          1                          kernel: vanilladot C: 2   
+SVM.unifrac                8                          2                          0                          0                          1                          kernel: vanilladot C: 2   
+SVM.unifrac                8                          1                          0                          0                          1                          kernel: vanilladot C: 2   
+SVM.unifrac                8                          1                          0                          0                          1                          kernel: vanilladot C: 2   
+SVM.unifrac                7                          0                          1                          0                          NA                         kernel: vanilladot C: 2   
+SVM.unifrac                6                          0                          1                          0                          NA                         kernel: vanilladot C: 0.5 

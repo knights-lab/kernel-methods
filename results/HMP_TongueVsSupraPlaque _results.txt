@@ -1,41 +1,101 @@
 method TP TN FP FN pearson best.model
-KNN.bc                     84                         100                        1                          1                          0.978334304018637          k: 3                      
-KNN.bc                     103                        78                         0                          5                          0.946705695219009          k: 1                      
-KNN.bc                     97                         85                         0                          4                          0.957722388093475          k: 6                      
-KNN.bc                     81                         103                        1                          1                          0.978189493433396          k: 1                      
-KNN.l2                     92                         92                         0                          2                          0.978723404255319          k: 5                      
-KNN.l2                     93                         92                         0                          1                          0.989304505324483          k: 3                      
-KNN.l2                     94                         92                         0                          0                          1                          k: 3                      
-KNN.l2                     94                         89                         3                          0                          0.968231369899084          k: 2                      
-KNN.unifrac                92                         91                         1                          2                          0.967797885643516          k: 1                      
-KNN.unifrac                92                         91                         0                          3                          0.96825306493724           k: 1                      
-KNN.unifrac                82                         100                        1                          3                          0.956813130983571          k: 1                      
-KNN.unifrac                100                        84                         0                          2                          0.978566471559948          k: 4                      
-RF.bc                      84                         100                        1                          1                          0.978334304018637                                    
-RF.bc                      105                        77                         1                          3                          0.946705695219009                                    
-RF.bc                      100                        85                         0                          1                          0.957722388093475                                    
-RF.bc                      81                         101                        3                          1                          0.978189493433396                                    
-RF.l2                      93                         90                         2                          1                          0.978723404255319                                    
-RF.l2                      93                         91                         1                          1                          0.989304505324483                                    
-RF.l2                      93                         92                         0                          1                          1                                                    
-RF.l2                      93                         91                         1                          1                          0.968231369899084                                    
-RF.otu                     90                         94                         2                          0                          0.978723404255319                                    
-RF.otu                     97                         89                         0                          0                          0.989304505324483                                    
-RF.otu                     93                         92                         0                          1                          1                                                    
-RF.otu                     95                         91                         0                          0                          0.968231369899084                                    
-RF.unifrac                 92                         90                         2                          2                          0.967797885643516                                    
-RF.unifrac                 92                         91                         0                          3                          0.96825306493724                                     
-RF.unifrac                 82                         99                         2                          3                          0.956813130983571                                    
-RF.unifrac                 98                         84                         0                          4                          0.978566471559948                                    
-SVM.bc                     84                         100                        1                          1                          0.978334304018637          kernel: vanilladot C: 0.25
-SVM.bc                     105                        78                         0                          3                          0.967581516860232          kernel: rbfdot C: 0.25    
-SVM.bc                     100                        85                         0                          1                          0.989235174625374          kernel: rbfdot C: 0.5     
-SVM.bc                     82                         103                        1                          0                          0.989167463385723          kernel: vanilladot C: 0.25
-SVM.l2                     94                         89                         3                          0                          0.968231369899084          kernel: vanilladot C: 0.25
-SVM.l2                     92                         92                         0                          2                          0.978723404255319          kernel: vanilladot C: 1   
-SVM.l2                     94                         92                         0                          0                          1                          kernel: vanilladot C: 0.25
-SVM.l2                     92                         91                         1                          2                          0.967797885643516          kernel: rbfdot C: 4       
-SVM.unifrac                94                         91                         1                          0                          0.989302044609788          kernel: vanilladot C: 0.25
-SVM.unifrac                95                         91                         0                          0                          1                          kernel: vanilladot C: 0.25
-SVM.unifrac                84                         101                        0                          1                          0.989215200450725          kernel: vanilladot C: 0.25
-SVM.unifrac                101                        83                         1                          1                          0.978291316526611          kernel: vanilladot C: 0.25
+KNN.bc                     36                         37                         0                          2                          0.948042944755782          k: 4                      
+KNN.bc                     38                         37                         0                          0                          1                          k: 3                      
+KNN.bc                     37                         37                         0                          1                          0.973684210526316          k: 10                     
+KNN.bc                     38                         37                         0                          0                          1                          k: 4                      
+KNN.bc                     37                         36                         1                          1                          0.946657183499289          k: 8                      
+KNN.bc                     37                         37                         0                          1                          0.973684210526316          k: 1                      
+KNN.bc                     37                         37                         0                          0                          1                          k: 1                      
+KNN.bc                     35                         36                         1                          2                          0.919254719740988          k: 1                      
+KNN.bc                     35                         36                         0                          2                          0.946656916317601          k: 6                      
+KNN.bc                     35                         36                         0                          2                          0.946656916317601          k: 12                     
+KNN.l2                     38                         37                         0                          0                          1                          k: 4                      
+KNN.l2                     38                         36                         1                          0                          0.973665727046479          k: 1                      
+KNN.l2                     38                         37                         0                          0                          1                          k: 2                      
+KNN.l2                     38                         37                         0                          0                          1                          k: 9                      
+KNN.l2                     38                         36                         1                          0                          0.973665727046479          k: 1                      
+KNN.l2                     38                         37                         0                          0                          1                          k: 6                      
+KNN.l2                     37                         37                         0                          0                          1                          k: 3                      
+KNN.l2                     37                         36                         1                          0                          0.973328526784575          k: 4                      
+KNN.l2                     36                         34                         2                          1                          0.918106945825483          k: 11                     
+KNN.l2                     37                         36                         0                          0                          1                          k: 16                     
+KNN.unifrac                35                         37                         0                          3                          0.923024205647136          k: 5                      
+KNN.unifrac                38                         36                         1                          0                          0.973665727046479          k: 1                      
+KNN.unifrac                38                         37                         0                          0                          1                          k: 1                      
+KNN.unifrac                38                         37                         0                          0                          1                          k: 3                      
+KNN.unifrac                38                         36                         1                          0                          0.973665727046479          k: 1                      
+KNN.unifrac                37                         37                         0                          1                          0.973684210526316          k: 6                      
+KNN.unifrac                36                         37                         0                          1                          0.973328526784575          k: 1                      
+KNN.unifrac                36                         36                         1                          1                          0.945945945945946          k: 1                      
+KNN.unifrac                34                         36                         0                          3                          0.920995574491457          k: 3                      
+KNN.unifrac                35                         36                         0                          2                          0.946656916317601          k: 1                      
+RF.bc                      37                         37                         0                          1                          0.948042944755782                                    
+RF.bc                      38                         36                         1                          0                          1                                                    
+RF.bc                      38                         37                         0                          0                          0.973684210526316                                    
+RF.bc                      38                         36                         1                          0                          1                                                    
+RF.bc                      38                         35                         2                          0                          0.946657183499289                                    
+RF.bc                      37                         37                         0                          1                          0.973684210526316                                    
+RF.bc                      37                         37                         0                          0                          1                                                    
+RF.bc                      36                         37                         0                          1                          0.919254719740988                                    
+RF.bc                      35                         36                         0                          2                          0.946656916317601                                    
+RF.bc                      36                         36                         0                          1                          0.946656916317601                                    
+RF.l2                      35                         37                         0                          3                          1                                                    
+RF.l2                      38                         36                         1                          0                          0.973665727046479                                    
+RF.l2                      38                         37                         0                          0                          1                                                    
+RF.l2                      38                         36                         1                          0                          1                                                    
+RF.l2                      37                         37                         0                          1                          0.973665727046479                                    
+RF.l2                      38                         37                         0                          0                          1                                                    
+RF.l2                      37                         37                         0                          0                          1                                                    
+RF.l2                      37                         37                         0                          0                          0.973328526784575                                    
+RF.l2                      36                         36                         0                          1                          0.918106945825483                                    
+RF.l2                      37                         35                         1                          0                          1                                                    
+RF.otu                     38                         37                         0                          0                          1                                                    
+RF.otu                     38                         37                         0                          0                          0.973665727046479                                    
+RF.otu                     38                         37                         0                          0                          1                                                    
+RF.otu                     38                         37                         0                          0                          1                                                    
+RF.otu                     38                         37                         0                          0                          0.973665727046479                                    
+RF.otu                     38                         37                         0                          0                          1                                                    
+RF.otu                     37                         37                         0                          0                          1                                                    
+RF.otu                     37                         35                         2                          0                          0.973328526784575                                    
+RF.otu                     36                         36                         0                          1                          0.918106945825483                                    
+RF.otu                     37                         36                         0                          0                          1                                                    
+RF.unifrac                 37                         37                         0                          1                          0.923024205647136                                    
+RF.unifrac                 37                         37                         0                          1                          0.973665727046479                                    
+RF.unifrac                 37                         37                         0                          1                          1                                                    
+RF.unifrac                 38                         35                         2                          0                          1                                                    
+RF.unifrac                 38                         37                         0                          0                          0.973665727046479                                    
+RF.unifrac                 36                         36                         1                          2                          0.973684210526316                                    
+RF.unifrac                 36                         37                         0                          1                          0.973328526784575                                    
+RF.unifrac                 37                         35                         2                          0                          0.945945945945946                                    
+RF.unifrac                 34                         36                         0                          3                          0.920995574491457                                    
+RF.unifrac                 35                         36                         0                          2                          0.946656916317601                                    
+SVM.bc                     37                         37                         0                          1                          0.973684210526316          kernel: rbfdot C: 0.5     
+SVM.bc                     38                         36                         1                          0                          0.973665727046479          kernel: vanilladot C: 0.25
+SVM.bc                     38                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.bc                     38                         37                         0                          0                          1                          kernel: rbfdot C: 0.25    
+SVM.bc                     38                         35                         2                          0                          0.947970805799761          kernel: vanilladot C: 0.25
+SVM.bc                     38                         37                         0                          0                          1                          kernel: rbfdot C: 1       
+SVM.bc                     37                         37                         0                          0                          1                          kernel: rbfdot C: 4       
+SVM.bc                     37                         36                         1                          0                          0.973328526784575          kernel: rbfdot C: 0.25    
+SVM.bc                     35                         36                         0                          2                          0.946656916317601          kernel: rbfdot C: 0.5     
+SVM.bc                     36                         36                         0                          1                          0.972972972972973          kernel: rbfdot C: 0.5     
+SVM.l2                     38                         37                         0                          0                          1                          kernel: vanilladot C: 2   
+SVM.l2                     38                         36                         1                          0                          0.973665727046479          kernel: vanilladot C: 1   
+SVM.l2                     38                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     38                         36                         1                          0                          0.973665727046479          kernel: vanilladot C: 1   
+SVM.l2                     38                         37                         0                          0                          1                          kernel: vanilladot C: 2   
+SVM.l2                     38                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     37                         37                         0                          0                          1                          kernel: vanilladot C: 2   
+SVM.l2                     37                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.l2                     36                         36                         0                          1                          0.972972972972973          kernel: vanilladot C: 0.25
+SVM.l2                     37                         36                         0                          0                          1                          kernel: vanilladot C: 2   
+SVM.unifrac                37                         37                         0                          1                          0.973684210526316          kernel: vanilladot C: 0.25
+SVM.unifrac                38                         36                         1                          0                          0.973665727046479          kernel: vanilladot C: 0.25
+SVM.unifrac                38                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.unifrac                38                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.unifrac                38                         36                         1                          0                          0.973665727046479          kernel: vanilladot C: 0.25
+SVM.unifrac                38                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.unifrac                37                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.unifrac                37                         37                         0                          0                          1                          kernel: vanilladot C: 0.25
+SVM.unifrac                36                         36                         0                          1                          0.972972972972973          kernel: vanilladot C: 0.25
+SVM.unifrac                37                         36                         0                          0                          1                          kernel: vanilladot C: 0.25
