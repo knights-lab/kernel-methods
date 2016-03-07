@@ -7,10 +7,12 @@ source('src/train.r')
 #outer cross-validation loop
 source('src/cvLoop.r')
 source('src/balancedFolds.r')
+source('src/f1.r')
 library('caret')
 library('parallel')
 library('MASS')
 library('RColorBrewer')
+library('ROCR')
 options(error=traceback)
 #on.exit(traceback())
 # consider using ROCR
@@ -161,10 +163,11 @@ for(r in res){
 	results = rbind(results,r)
 }
 results = results[order(results[,1]),]
-png(paste(outid,'_results.png'))
+f1.means = aggregate(results,by = list(method=results$method), FUN=mean)
+png(paste(outid,'_results.png', sep=''))
 par(mar=c(8,4,2,2))
-midpoints = barplot(pearson.means, las=2, ylim=c(min(pearson.means)-0.02, max(pearson.means)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
-text(midpoints,round(pearson.means,4),labels=round(pearson.means,4))
+midpoints = barplot(f1.means, las=2, ylim=c(min(f1.means)-0.02, max(f1.means)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
+text(midpoints,round(f1.means,4),labels=round(f1.means,4))
 axis(1,at=c(-1e6, 1e6),labels=NA)
 dev.off()
-write.csv(results,file=paste(outid,'_results.txt'))
+write.csv(results,file=paste(outid,'_results.txt', sep=''))
