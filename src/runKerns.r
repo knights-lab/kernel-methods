@@ -164,11 +164,13 @@ for(r in res){
 	results = rbind(results,r)
 }
 results = results[order(results[,1]),]
-f1.means = aggregate(results,by = list(method=results$method), FUN=mean)
+write.csv(results,file=paste(outid,'_results.txt', sep=''))
+f1.means = aggregate(performance ~ method ,data = results, FUN='mean')
+performance = f1.means$performance
+names(performance) = f1.means$method
 png(paste(outid,'_results.png', sep=''))
 par(mar=c(8,4,2,2))
-midpoints = barplot(f1.means, las=2, ylim=c(min(f1.means)-0.02, max(f1.means)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
-text(midpoints,round(f1.means,4),labels=round(f1.means,4))
+midpoints = barplot(performance, las=2, ylim=c(min(performance)-0.02, max(performance)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
+text(midpoints,round(performance,4),labels=round(performance,4))
 axis(1,at=c(-1e6, 1e6),labels=NA)
 dev.off()
-write.csv(results,file=paste(outid,'_results.txt', sep=''))

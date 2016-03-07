@@ -9605,13 +9605,12 @@ function (TP, TN, FP, FN)
 [11] "utils"        "datasets"     "base"        
 
 No traceback available 
-3: aggregate.data.frame(as.data.frame(x), ...)
-2: aggregate.default(results, by = list(method = results$method), 
-       FUN = mean)
-1: aggregate(results, by = list(method = results$method), FUN = mean)
-1: barplot(f1.means, las = 2, ylim = c(min(f1.means) - 0.02, max(f1.means) + 
-       0.02), xpd = FALSE, col = brewer.pal(8, "Set2"))
-1: text(midpoints, round(f1.means, 4), labels = round(f1.means, 
-       4))
+3: plot.window(xlim, ylim, log = log, ...)
+2: barplot.default(performance, las = 2, ylim = c(min(performance) - 
+       0.02, max(performance) + 0.02), xpd = FALSE, col = brewer.pal(8, 
+       "Set2"))
+1: barplot(performance, las = 2, ylim = c(min(performance) - 0.02, 
+       max(performance) + 0.02), xpd = FALSE, col = brewer.pal(8, 
+       "Set2"))
 null device 
           1 
