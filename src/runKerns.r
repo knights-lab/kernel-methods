@@ -7,12 +7,11 @@ source('src/train.r')
 #outer cross-validation loop
 source('src/cvLoop.r')
 source('src/balancedFolds.r')
-source('src/f1.r')
+source('src/performance.r')
 library('caret')
 library('parallel')
 library('MASS')
 library('RColorBrewer')
-library('ROCR')
 options(error=traceback)
 #on.exit(traceback())
 # consider using ROCR
@@ -29,19 +28,12 @@ variable = args[6] #'COUNTRY'
 positiveClasses = eval(parse(text=args[7])) #'GAZ:United States of America'
 negativeClasses = eval(parse(text=args[8]))
 outid = args[9]
+writeLines(args, paste(outid,'_args.txt',sep=''))
+
 print('positive classes: ')
 print(positiveClasses)
 print('negative classes:')
 print(negativeClasses)
-
-#mapFile = 'data/mapping/Yatsunenko_global_gut_study_850_mapping_file.txt'
-#otuFile = 'data/Yatsunenko_Taxa/Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt'
-#uniFile =  'data/unifrac/weighted_unifrac_Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt'
-#bcFile = 'data/bray_curtis/bray_curtis_Yatsunenko_global_gut_study_850_gg_ref_13_8_L6.txt'
-#variable = 'COUNTRY'
-#positiveClasses = c('GAZ:United States of America')
-#negativeClasses = c('GAZ:Venezuela','GAZ:Malawi')
-#filterstr = "list(op='>', var='AGE', val=50)"
 
 
 map = read.table(mapFile,sep='\t',head=T,row=1,check=F,comment='', quote='"')
@@ -74,12 +66,14 @@ print(dim(map))
 overlap = intersect(rownames(map),rownames(otus))
 map = map[overlap,]
 otus = otus[overlap,]
-# do the filtering for unifrac
+
 uni.overlap = intersect(rownames(map),rownames(uni.dist))
 uni.map = map[uni.overlap,]
 uni.dist = as.matrix(uni.dist[uni.overlap,uni.overlap])
-#convert to similarity matrix (to use as kernelMatrix)
+#since unifrac is actually a similarity measure, take complement to get distance
 uni.sim = 1-uni.dist
+#NEW KERNEL: pcoa of unifrac distances
+pc.all = cmdscale(uni.dist,k=20)
 
 bc.overlap = intersect(rownames(map),rownames(bc.dist))
 bc.map = map[bc.overlap,]
@@ -97,7 +91,6 @@ l2.outcomes = (map[rownames(l2.dist),variable] %in% positiveClasses)
 outcome.names = rownames(l2.outcomes)
 l2.outcomes = factor(l2.outcomes)
 names(l2.outcomes) = outcome.names
-
 #number of cross-validation folds to do
 nfolds = 10
 
@@ -106,22 +99,14 @@ filtered.var = factor(map[,variable])
 print(levels(filtered.var))
 fold.ids = balanced.folds(filtered.var,nfolds)
 nfolds = max(as.numeric(levels(as.factor(fold.ids))))
-#uni.sampler = sample(1:nrow(uni.dist),nrow(uni.dist),replace=FALSE)
-#bc.sampler = sample(1:nrow(bc.dist),nrow(bc.dist),replace=FALSE)
-#l2.sampler = sample(1:nrow(l2.dist),nrow(l2.dist),replace=FALSE)
-#otu.sampler = sample(1:nrow(otus), nrow(otus), replace=FALSE)
-#how many samples per holdout?
-#uni.part = nrow(bc.dist)%/%nfolds
-#bc.part = nrow(uni.dist)%/%nfolds
-#l2.part = nrow(uni.dist)%/%nfolds
-#otu.part = nrow(otus)%/%nfolds
 
 numMethods = 3 #svm, knn, rf
 numKernels = 3 #l2, unifrac, bray_curtis, none (raw)
 #true positives, true negatives, false positives, false negatives
-results = matrix(0,0,7)
-colnames(results) = c('method','TP','TN','FP','FN','performance','best.model')
 
+result.columns = c('method','TP','TN','FP','FN','f1','matthews','class-wise','auc','observed_over_baseline','best_model')
+results = matrix(0,0,length(result.columns))
+colnames(results) = result.columns
 clust = makeCluster((detectCores()-1))
 #run in parallel
 clusterEvalQ(clust, library('e1071'))
@@ -130,26 +115,19 @@ clusterEvalQ(clust, library('randomForest'))
 clusterEvalQ(clust, source('src/model.knn.r'))
 clusterEvalQ(clust, source('src/model.svm.r'))
 clusterEvalQ(clust, source('src/train.r'))
-clusterEvalQ(clust, source('src/f1.r'))
+clusterEvalQ(clust, source('src/performance.r'))
 clusterEvalQ(clust, library('caret'))
 clusterExport(clust,"map")
 clusterExport(clust,"otus")
 clusterExport(clust,"uni.map")
 clusterExport(clust,"uni.dist")
+clusterExport(clust,"pc.all")
 clusterExport(clust,"uni.sim")
 clusterExport(clust,"bc.map")
 clusterExport(clust,"bc.dist")
 clusterExport(clust,"bc.sim")
 clusterExport(clust,"l2.dist")
 clusterExport(clust,"l2.outcomes")
-#clusterExport(clust,"uni.sampler")
-#clusterExport(clust,"bc.sampler")
-#clusterExport(clust,"l2.sampler")
-#clusterExport(clust,"otu.sampler")
-#clusterExport(clust,"uni.part")
-#clusterExport(clust,"bc.part")
-#clusterExport(clust,"l2.part")
-#clusterExport(clust,"otu.part")
 clusterExport(clust,"fold.ids")
 clusterExport(clust,"numMethods")
 clusterExport(clust,"numKernels")
@@ -157,20 +135,45 @@ clusterExport(clust,"variable")
 clusterExport(clust,"positiveClasses")
 clusterExport(clust,"variable")
 res = parLapply(clust, 1:nfolds, doOuterCV)
-#for(i in 1:nfolds){
-#	doOuterCV(i)
-#}
+for(i in 1:nfolds){
+	results = rbind(results,doOuterCV(i))
+}
 for(r in res){
 	results = rbind(results,r)
 }
 results = results[order(results[,1]),]
-write.csv(results,file=paste(outid,'_results.txt', sep=''))
-f1.means = aggregate(performance ~ method ,data = results, FUN='mean')
-performance = f1.means$performance
-names(performance) = f1.means$method
-png(paste(outid,'_results.png', sep=''))
-par(mar=c(8,4,2,2))
-midpoints = barplot(performance, las=2, ylim=c(min(performance)-0.02, max(performance)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
-text(midpoints,round(performance,4),labels=round(performance,4))
-axis(1,at=c(-1e6, 1e6),labels=NA)
+filename = paste(outid,'_results.txt', sep='')
+write.csv(results,file=filename)
+fromFile = read.csv(filename)
+f1.means = aggregate(f1 ~ method ,data = fromFile, FUN='mean')
+#performance = f1.means$f1
+#names(performance) = f1.means$method
+#png(paste(outid,'_results.png', sep=''))
+#par(mar=c(8,4,2,2))
+#midpoints = barplot(performance, las=2, ylim=c(min(performance)-0.02, max(performance)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
+#text(midpoints,round(performance,4),labels=round(performance,4))
+#axis(1,at=c(-1e6, 1e6),labels=NA)
+#dev.off()
+
+f1.means.save = f1.means
+f1.means.SVM.PC = f1.means.save[grep("SVM\\.pc\\.uni",f1.means.save$method),]
+f1.means.KNN.PC = f1.means.save[grep("KNN\\.pc\\.uni",f1.means.save$method),]
+f1.means.RF.PC = f1.means.save[grep("RF\\.pc\\.uni",f1.means.save$method),]
+f1.means.Rest = f1.means.save[ !(f1.means.save$method %in% f1.means.save[grep("\\.pc\\.uni",f1.means.save$method),"method"]),]
+f1list = list("1"=f1.means.SVM.PC, "2"=f1.means.KNN.PC, "3"=f1.means.RF.PC, "4" = f1.means.Rest)
+png(paste(outid,'_results.png', sep=''),width=1024,height=1024)
+#plot.new()
+par(mfrow=c(2,2))
+for(i in 1:4){
+  f1.means = f1list[[i]];
+  nums = as.numeric(gsub(".*pc\\.uni\\.", "",f1.means$method))
+  f1.means = f1.means[order(nums),]
+  performance = f1.means$f1
+  names(performance) = f1.means$method
+  par(mar=c(8,4,2,2))
+  midpoints = barplot(performance, las=2, ylim=c(min(performance)-0.02, max(performance)+0.02), xpd=FALSE,col=brewer.pal(8,'Set2'))
+  text(midpoints,round(performance,4),labels=round(performance,4))
+  axis(1,at=c(-1e6, 1e6),labels=NA)
+}
 dev.off()
+
