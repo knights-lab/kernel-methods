@@ -16,6 +16,12 @@ performance = function(x,y){
 	result$recall = recall
 	result$f1 = 2 * precision * recall/ (precision + recall)
 	result$mcc = (TP*TN - FP*FN) / sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
+	#class wise accuracy for the classes that were present
+	c.acc.pos = 0
+	c.acc.neg = 0
+	if((TP + FN) > 0){c.acc.pos = TP/(TP+FN)}
+	if((TN + FP) > 0){c.acc.neg = TN/(TN+FP)}
+	result$class.acc = c.acc.pos+c.acc.neg
 	trapezoidal.sum = 0;
 	#should be logical vectors, so adding / subtracting will coerce logicals to 0/1
 for(i in 2:length(x)){

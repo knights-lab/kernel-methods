@@ -6,7 +6,7 @@
  screen -S HMPSupraSub -d -m ./examples/HMP_SupraVsSubPlaque.sh
  screen -S HMPTongeSupra -d -m ./examples/HMP_TongueVsSupraPlaque.sh
  screen -S HMPGender -d -m ./examples/HMP_Gender.sh
- screen -S SokolCrohns -d -m ./examples/Sokol_HealthyvsChrons.sh
+ screen -S SokolCrohns -d -m ./examples/Sokol_HealthyvsCrohns.sh
  screen -S SokolHealthy -d -m ./examples/Sokol_HealthyvsNot.sh
  screen -S SokolColitis -d -m ./examples/Sokol_HealthyvsColitis.sh
  screen -S Bacteremia -d -m ./examples/Bacteremia.sh

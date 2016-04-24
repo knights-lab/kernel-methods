@@ -7516,14 +7516,32 @@ function (x, y, eval.type = c("CV", "bootstrap")[1], n.folds.eval = 10,
 
 [[1]]
 [[1]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7533,14 +7551,32 @@ function (TP, TN, FP, FN)
 
 [[2]]
 [[2]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7550,14 +7586,32 @@ function (TP, TN, FP, FN)
 
 [[3]]
 [[3]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7567,14 +7621,32 @@ function (TP, TN, FP, FN)
 
 [[4]]
 [[4]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7584,14 +7656,32 @@ function (TP, TN, FP, FN)
 
 [[5]]
 [[5]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7601,14 +7691,32 @@ function (TP, TN, FP, FN)
 
 [[6]]
 [[6]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7618,14 +7726,32 @@ function (TP, TN, FP, FN)
 
 [[7]]
 [[7]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7635,14 +7761,32 @@ function (TP, TN, FP, FN)
 
 [[8]]
 [[8]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7652,14 +7796,32 @@ function (TP, TN, FP, FN)
 
 [[9]]
 [[9]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7669,14 +7831,32 @@ function (TP, TN, FP, FN)
 
 [[10]]
 [[10]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7686,14 +7866,32 @@ function (TP, TN, FP, FN)
 
 [[11]]
 [[11]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7703,14 +7901,32 @@ function (TP, TN, FP, FN)
 
 [[12]]
 [[12]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7720,14 +7936,32 @@ function (TP, TN, FP, FN)
 
 [[13]]
 [[13]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7737,14 +7971,32 @@ function (TP, TN, FP, FN)
 
 [[14]]
 [[14]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7754,14 +8006,32 @@ function (TP, TN, FP, FN)
 
 [[15]]
 [[15]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7771,14 +8041,32 @@ function (TP, TN, FP, FN)
 
 [[16]]
 [[16]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7788,14 +8076,32 @@ function (TP, TN, FP, FN)
 
 [[17]]
 [[17]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7805,14 +8111,32 @@ function (TP, TN, FP, FN)
 
 [[18]]
 [[18]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7822,14 +8146,32 @@ function (TP, TN, FP, FN)
 
 [[19]]
 [[19]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7839,14 +8181,32 @@ function (TP, TN, FP, FN)
 
 [[20]]
 [[20]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7856,14 +8216,32 @@ function (TP, TN, FP, FN)
 
 [[21]]
 [[21]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7873,14 +8251,32 @@ function (TP, TN, FP, FN)
 
 [[22]]
 [[22]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7890,14 +8286,32 @@ function (TP, TN, FP, FN)
 
 [[23]]
 [[23]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7907,14 +8321,32 @@ function (TP, TN, FP, FN)
 
 [[24]]
 [[24]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7924,14 +8356,32 @@ function (TP, TN, FP, FN)
 
 [[25]]
 [[25]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7941,14 +8391,32 @@ function (TP, TN, FP, FN)
 
 [[26]]
 [[26]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7958,14 +8426,32 @@ function (TP, TN, FP, FN)
 
 [[27]]
 [[27]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7975,14 +8461,32 @@ function (TP, TN, FP, FN)
 
 [[28]]
 [[28]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -7992,14 +8496,32 @@ function (TP, TN, FP, FN)
 
 [[29]]
 [[29]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8009,14 +8531,32 @@ function (TP, TN, FP, FN)
 
 [[30]]
 [[30]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8026,14 +8566,32 @@ function (TP, TN, FP, FN)
 
 [[31]]
 [[31]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8043,14 +8601,32 @@ function (TP, TN, FP, FN)
 
 [[32]]
 [[32]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8060,14 +8636,32 @@ function (TP, TN, FP, FN)
 
 [[33]]
 [[33]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8077,14 +8671,32 @@ function (TP, TN, FP, FN)
 
 [[34]]
 [[34]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8094,14 +8706,32 @@ function (TP, TN, FP, FN)
 
 [[35]]
 [[35]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8111,14 +8741,32 @@ function (TP, TN, FP, FN)
 
 [[36]]
 [[36]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8128,14 +8776,32 @@ function (TP, TN, FP, FN)
 
 [[37]]
 [[37]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8145,14 +8811,32 @@ function (TP, TN, FP, FN)
 
 [[38]]
 [[38]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8162,14 +8846,32 @@ function (TP, TN, FP, FN)
 
 [[39]]
 [[39]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8179,14 +8881,32 @@ function (TP, TN, FP, FN)
 
 [[40]]
 [[40]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8196,14 +8916,32 @@ function (TP, TN, FP, FN)
 
 [[41]]
 [[41]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8213,14 +8951,32 @@ function (TP, TN, FP, FN)
 
 [[42]]
 [[42]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8230,14 +8986,32 @@ function (TP, TN, FP, FN)
 
 [[43]]
 [[43]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8247,14 +9021,32 @@ function (TP, TN, FP, FN)
 
 [[44]]
 [[44]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8264,14 +9056,32 @@ function (TP, TN, FP, FN)
 
 [[45]]
 [[45]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8281,14 +9091,32 @@ function (TP, TN, FP, FN)
 
 [[46]]
 [[46]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8298,14 +9126,32 @@ function (TP, TN, FP, FN)
 
 [[47]]
 [[47]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8315,14 +9161,32 @@ function (TP, TN, FP, FN)
 
 [[48]]
 [[48]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8332,14 +9196,32 @@ function (TP, TN, FP, FN)
 
 [[49]]
 [[49]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8349,14 +9231,32 @@ function (TP, TN, FP, FN)
 
 [[50]]
 [[50]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8366,14 +9266,32 @@ function (TP, TN, FP, FN)
 
 [[51]]
 [[51]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8383,14 +9301,32 @@ function (TP, TN, FP, FN)
 
 [[52]]
 [[52]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8400,14 +9336,32 @@ function (TP, TN, FP, FN)
 
 [[53]]
 [[53]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8417,14 +9371,32 @@ function (TP, TN, FP, FN)
 
 [[54]]
 [[54]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8434,14 +9406,32 @@ function (TP, TN, FP, FN)
 
 [[55]]
 [[55]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8451,14 +9441,32 @@ function (TP, TN, FP, FN)
 
 [[56]]
 [[56]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8468,14 +9476,32 @@ function (TP, TN, FP, FN)
 
 [[57]]
 [[57]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8485,14 +9511,32 @@ function (TP, TN, FP, FN)
 
 [[58]]
 [[58]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8502,14 +9546,32 @@ function (TP, TN, FP, FN)
 
 [[59]]
 [[59]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8519,14 +9581,32 @@ function (TP, TN, FP, FN)
 
 [[60]]
 [[60]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8536,14 +9616,32 @@ function (TP, TN, FP, FN)
 
 [[61]]
 [[61]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8553,14 +9651,32 @@ function (TP, TN, FP, FN)
 
 [[62]]
 [[62]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8570,14 +9686,32 @@ function (TP, TN, FP, FN)
 
 [[63]]
 [[63]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8587,14 +9721,32 @@ function (TP, TN, FP, FN)
 
 [[64]]
 [[64]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8604,14 +9756,32 @@ function (TP, TN, FP, FN)
 
 [[65]]
 [[65]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8621,14 +9791,32 @@ function (TP, TN, FP, FN)
 
 [[66]]
 [[66]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8638,14 +9826,32 @@ function (TP, TN, FP, FN)
 
 [[67]]
 [[67]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8655,14 +9861,32 @@ function (TP, TN, FP, FN)
 
 [[68]]
 [[68]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8672,14 +9896,32 @@ function (TP, TN, FP, FN)
 
 [[69]]
 [[69]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8689,14 +9931,32 @@ function (TP, TN, FP, FN)
 
 [[70]]
 [[70]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8706,14 +9966,32 @@ function (TP, TN, FP, FN)
 
 [[71]]
 [[71]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8723,14 +10001,32 @@ function (TP, TN, FP, FN)
 
 [[72]]
 [[72]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8740,14 +10036,32 @@ function (TP, TN, FP, FN)
 
 [[73]]
 [[73]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8757,14 +10071,32 @@ function (TP, TN, FP, FN)
 
 [[74]]
 [[74]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8774,14 +10106,32 @@ function (TP, TN, FP, FN)
 
 [[75]]
 [[75]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8791,14 +10141,32 @@ function (TP, TN, FP, FN)
 
 [[76]]
 [[76]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8808,14 +10176,32 @@ function (TP, TN, FP, FN)
 
 [[77]]
 [[77]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8825,14 +10211,32 @@ function (TP, TN, FP, FN)
 
 [[78]]
 [[78]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8842,14 +10246,32 @@ function (TP, TN, FP, FN)
 
 [[79]]
 [[79]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8859,14 +10281,32 @@ function (TP, TN, FP, FN)
 
 [[80]]
 [[80]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8876,14 +10316,32 @@ function (TP, TN, FP, FN)
 
 [[81]]
 [[81]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8893,14 +10351,32 @@ function (TP, TN, FP, FN)
 
 [[82]]
 [[82]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8910,14 +10386,32 @@ function (TP, TN, FP, FN)
 
 [[83]]
 [[83]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8927,14 +10421,32 @@ function (TP, TN, FP, FN)
 
 [[84]]
 [[84]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8944,14 +10456,32 @@ function (TP, TN, FP, FN)
 
 [[85]]
 [[85]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8961,14 +10491,32 @@ function (TP, TN, FP, FN)
 
 [[86]]
 [[86]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8978,14 +10526,32 @@ function (TP, TN, FP, FN)
 
 [[87]]
 [[87]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -8995,14 +10561,32 @@ function (TP, TN, FP, FN)
 
 [[88]]
 [[88]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -9012,14 +10596,32 @@ function (TP, TN, FP, FN)
 
 [[89]]
 [[89]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -9029,14 +10631,32 @@ function (TP, TN, FP, FN)
 
 [[90]]
 [[90]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -9046,14 +10666,32 @@ function (TP, TN, FP, FN)
 
 [[91]]
 [[91]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -9063,14 +10701,32 @@ function (TP, TN, FP, FN)
 
 [[92]]
 [[92]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -9080,14 +10736,32 @@ function (TP, TN, FP, FN)
 
 [[93]]
 [[93]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -9097,14 +10771,32 @@ function (TP, TN, FP, FN)
 
 [[94]]
 [[94]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 
@@ -9114,14 +10806,32 @@ function (TP, TN, FP, FN)
 
 [[95]]
 [[95]]$value
-function (TP, TN, FP, FN) 
+function (x, y) 
 {
     result = list()
+    res = confusionMatrix(x, y)
+    TP = res$table[1, 1]
+    TN = res$table[2, 2]
+    FP = res$table[1, 2]
+    FN = res$table[2, 1]
+    result$TP = TP
+    result$TN = FN
+    result$FP = FP
+    result$FN = FN
     precision = TP/(TP + FP)
     result$precision = precision
     recall = TP/(TP + FN)
     result$recall = recall
     result$f1 = 2 * precision * recall/(precision + recall)
+    result$mcc = (TP * TN - FP * FN)/sqrt((TP + FP) * (TP + FN) * 
+        (TN + FP) * (TN + FN))
+    trapezoidal.sum = 0
+    for (i in 2:length(x)) {
+        trapezoidal.sum = trapezoidal.sum + (x[i] - x[i - 1]) * 
+            (y[i] + y[i - 1])
+    }
+    gini = 1 - trapezoidal.sum
+    result$auc = (gini + 1)/2
     return(result)
 }
 

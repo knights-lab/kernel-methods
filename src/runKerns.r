@@ -135,9 +135,9 @@ clusterExport(clust,"variable")
 clusterExport(clust,"positiveClasses")
 clusterExport(clust,"variable")
 res = parLapply(clust, 1:nfolds, doOuterCV)
-for(i in 1:nfolds){
-	results = rbind(results,doOuterCV(i))
-}
+#for(i in 1:nfolds){
+	#results = rbind(results,doOuterCV(i))
+#}
 for(r in res){
 	results = rbind(results,r)
 }
