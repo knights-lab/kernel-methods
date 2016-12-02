@@ -1,11 +1,27 @@
-require('caret')
+confusion.matrix = function(x,y,positive = TRUE){
+  #x is predicted, y is true values
+  if(positive %in% levels(x) || positive %in% levels(y)){
+    #set positive to be the level that it maches
+    positive = levels(y)[which(positive == levels(y))[1]]
+  }
+  comparison = x == y
+  true.positives = sum(comparison[which(x == positive)])
+  false.positives = sum((!comparison)[which(x == positive)])
+  true.negatives = sum(comparison[which(x != positive)])
+  false.negatives = sum((!comparison)[which(x != positive)])
+  
+  conf.mat = rbind(c(true.positives,false.positives),
+                   c(false.negatives,true.negatives))
+  return(conf.mat)
+}
+
 performance = function(x,y){
 	result = list()
-	res = confusionMatrix(x,y)
-	TP = res$table[1,1]
-	TN = res$table[2,2]
-	FP = res$table[1,2]
-	FN = res$table[2,1]
+	res = confusion.matrix(x,y)
+	TP = res[1,1]
+	TN = res[2,2]
+	FP = res[1,2]
+	FN = res[2,1]
 	result$TP = TP
 	result$TN = FN
 	result$FP = FP
@@ -24,7 +40,7 @@ performance = function(x,y){
 	result$class.acc = c.acc.pos+c.acc.neg
 	trapezoidal.sum = 0;
 	#should be logical vectors, so adding / subtracting will coerce logicals to 0/1
-for(i in 2:length(x)){
+  for(i in 2:length(x)){
 		trapezoidal.sum = trapezoidal.sum + (x[i] - x[i-1])*(y[i] + y[i-1])
 	}
 	gini = 1-trapezoidal.sum

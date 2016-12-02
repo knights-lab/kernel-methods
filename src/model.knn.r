@@ -1,9 +1,12 @@
 # trains k-nearest neighbor classifier
-"knn.dist" <- function(x,y,k=1){
+"knn.dist" <- function(x,y,k=1, customData = function(data,...){return(list())}, customKernel = function(data,...){return(data)}, ...){
+	#print('knn make model')
 	model = list()
 	model[['train.ids']] <- rownames(x)
 	model[['k']] <- min(k, length(y))
 	model[['y']] <- as.factor(y)
+	model[['customKernel']] = customKernel
+	model[['customData']] = customData(x,model,...)
 	class(model) <- "knn.dist"
 	return(model)
 }
@@ -14,8 +17,9 @@
 # d must be a distance matrix
 # d must have row and column names
 # d must contain the training samples and the test samples
-"predict.knn.dist" <- function(model,x,type=c('response','prob')[1]){
-	d <- x
+"predict.knn.dist" <- function(model,x,type=c('response','prob')[1],...){
+	#print('knn predict')
+	d <- model$customKernel(x,model, ...)
 	if(is.null(rownames(d)) || is.null(colnames(d))) stop('KNN distance matrix must have row/column names')
 	
 	test.ix <- !(rownames(d) %in% model$train.ids)

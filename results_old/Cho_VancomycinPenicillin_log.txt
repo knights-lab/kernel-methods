@@ -1,0 +1,116 @@
+[1] "positive classes: "
+[1] "VancomycinPenicillin"
+[1] "negative classes:"
+[1] "Chlortetracycline" "Control"           "Vancomycin"       
+[4] "Penicillin"       
+[1] "map size before filtering:"
+[1] 95  3
+[1] "filter function: "
+[1] "function(m){as.character(as.character(m))==\"cecal\"}"
+[1] "map size after user filter:"
+[1] 49  3
+[1] "map size after class filter:"
+[1] 49  3
+[1] "Chlortetracycline"    "Control"              "Penicillin"          
+[4] "Vancomycin"           "VancomycinPenicillin"
+No traceback available 
+4: socketConnection("localhost", port = port, server = TRUE, blocking = TRUE, 
+       open = "a+b", timeout = timeout)
+3: newPSOCKnode(names[[i]], options = options, rank = i)
+2: makePSOCKcluster(spec, ...)
+1: makeCluster((detectCores() - 1))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, library("e1071"))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, library("kernlab"))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, library("randomForest"))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, source("src/model.knn.r"))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, source("src/model.svm.r"))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, source("src/train.r"))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, source("src/PCoPD.R"))
+3: checkCluster(cl)
+2: clusterCall(cl, eval, substitute(expr), env = .GlobalEnv)
+1: clusterEvalQ(clust, source("src/performance.r"))
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "map")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "otus")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "uni.map")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "uni.dist")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "pc.all")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "uni.sim")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "bc.map")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "bc.dist")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "bc.sim")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "l2.dist")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "l2.outcomes")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "fold.ids")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "numMethods")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "numKernels")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "variable")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "positiveClasses")
+3: checkCluster(cl)
+2: clusterCall(cl, gets, name, get(name, envir = envir))
+1: clusterExport(clust, "variable")
+5: checkCluster(cl)
+4: staticClusterApply(cl, fun, length(x), argfun)
+3: clusterApply(cl, x = splitList(X, length(cl)), fun = lapply, 
+       fun, ...)
+2: do.call(c, clusterApply(cl, x = splitList(X, length(cl)), fun = lapply, 
+       fun, ...), quote = TRUE)
+1: parLapply(clust, 1:nfolds, doOuterCV)
+No traceback available 
+4: stop("no rows to aggregate")
+3: aggregate.data.frame(mf[1L], mf[-1L], FUN = FUN, ...)
+2: aggregate.formula(f1 ~ method, data = fromFile, FUN = "mean")
+1: aggregate(f1 ~ method, data = fromFile, FUN = "mean")
+No traceback available 
+No traceback available 
+No traceback available 
+No traceback available 
+No traceback available 
+No traceback available 
+null device 
+          1 
