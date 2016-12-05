@@ -13,6 +13,7 @@ You must have R installed on your machine, along with the RScript command in you
 * parallel
 * MASS
 * RColorBrewer
+
 R may automatically ask you to install packages if you try to run without installing them first.
 ###Usage
 The main file is **runKerns.R**. This is all you should need to actually run experiments once data files are in place. The syntax is as follows (assumes your working directory is the same as runKerns.r):
