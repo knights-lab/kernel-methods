@@ -6,7 +6,14 @@ The goals of this project are two-fold. One is to examine and compare the predic
 ##System Overview
 The kernel-methods project employs R scripts to run cross-validated predictive performance analysis of the classification of variables of different dataset otu files. In english, it means for example we want to see how well different kernel-methods can predict the value of a certain variable (eg whether or not you are obese) based on your microbiota.
 ##Dependencies
-You must have R installed on your machine, along with the RScript command in your environment variables if you want to do batch scripting. 
+You must have R installed on your machine, along with the RScript command in your environment variables if you want to do batch scripting. Additionally, the following packages must be installed in R:
+*e1071
+*kernlab
+*randomForest
+*parallel
+*MASS
+*RColorBrewer
+R may automatically ask you to install packages if you try to run without installing them first.
 ###Usage
 The main file is **runKerns.R**. This is all you should need to actually run experiments once data files are in place. The syntax is as follows (assumes your working directory is the same as runKerns.r):
 `Rscript runKerns.r 'path/to/mapping_file.txt' 'path/to/taxa_summary.txt' 'path/to/unifrac_file.txt' 'path/to/bray_curtis_file.txt' filters 'variable' positive_classes negative_classes 'path/to/output' `
