@@ -40,6 +40,14 @@ map = read.table(mapFile,sep='\t',head=T,row=1,check=F,comment='', quote='"')
 otus = read.table(otuFile,sep='\t',head=T, skip=1,row=1,check=F,comment='', quote='"')
 uni.dist = read.table(uniFile,sep='\t',head=T,row=1,check=F,comment='', quote='"')
 bc.dist = read.table(bcFile,sep='\t',head=T,row=1,check=F,comment='', quote='"')
+#scrape off taxonomy column
+otus = otus[,setdiff(colnames(otus),c("taxonomy"))]
+#make sure things are numeric
+otus[,] = apply(otus,2,function(x){return(as.numeric(x))})
+
+uni.dist[,] = apply(uni.dist,2,function(x){return(as.numeric(x))})
+bc.dist[,] = apply(bc.dist,2,function(x){return(as.numeric(x))})
+
 #switch otus to have points as rows instead of columns
 otus = t(otus)
 
@@ -105,40 +113,40 @@ numKernels = 3 #l2, unifrac, bray_curtis, none (raw)
 result.columns = c('method','TP','TN','FP','FN','f1','matthews','class-wise','auc','observed_over_baseline','best_model')
 results = matrix(0,0,length(result.columns))
 colnames(results) = result.columns
-#clust = makeCluster((detectCores()-1))
+clust = makeCluster((detectCores()-1))
 #run in parallel
-#clusterEvalQ(clust, library('e1071'))
-#clusterEvalQ(clust, library('kernlab'))
-#clusterEvalQ(clust, library('randomForest'))
-#clusterEvalQ(clust, source('src/model.knn.r'))
-#clusterEvalQ(clust, source('src/model.svm.r'))
-#clusterEvalQ(clust, source('src/train.r'))
-#clusterEvalQ(clust, source('src/PCoPD.R'))
-#clusterEvalQ(clust, source('src/performance.r'))
-#clusterExport(clust,"map")
-#clusterExport(clust,"otus")
-#clusterExport(clust,"uni.map")
-#clusterExport(clust,"uni.dist")
-#clusterExport(clust,"pc.all")
-#clusterExport(clust,"uni.sim")
-#clusterExport(clust,"bc.map")
-#clusterExport(clust,"bc.dist")
-#clusterExport(clust,"bc.sim")
-#clusterExport(clust,"l2.dist")
-#clusterExport(clust,"l2.outcomes")
-#clusterExport(clust,"fold.ids")
-#clusterExport(clust,"numMethods")
-#clusterExport(clust,"numKernels")
-#clusterExport(clust,"variable")
-#clusterExport(clust,"positiveClasses")
-#clusterExport(clust,"variable")
-#res = parLapply(clust, 1:nfolds, doOuterCV)
-for(i in 1:nfolds){
-	results = rbind(results,doOuterCV(i))
+clusterEvalQ(clust, library('e1071'))
+clusterEvalQ(clust, library('kernlab'))
+clusterEvalQ(clust, library('randomForest'))
+clusterEvalQ(clust, source('src/model.knn.r'))
+clusterEvalQ(clust, source('src/model.svm.r'))
+clusterEvalQ(clust, source('src/train.r'))
+clusterEvalQ(clust, source('src/PCoPD.R'))
+clusterEvalQ(clust, source('src/performance.r'))
+clusterExport(clust,"map")
+clusterExport(clust,"otus")
+clusterExport(clust,"uni.map")
+clusterExport(clust,"uni.dist")
+clusterExport(clust,"pc.all")
+clusterExport(clust,"uni.sim")
+clusterExport(clust,"bc.map")
+clusterExport(clust,"bc.dist")
+clusterExport(clust,"bc.sim")
+clusterExport(clust,"l2.dist")
+clusterExport(clust,"l2.outcomes")
+clusterExport(clust,"fold.ids")
+clusterExport(clust,"numMethods")
+clusterExport(clust,"numKernels")
+clusterExport(clust,"variable")
+clusterExport(clust,"positiveClasses")
+clusterExport(clust,"variable")
+res = parLapply(clust, 1:nfolds, doOuterCV)
+# for(i in 1:nfolds){
+# 	results = rbind(results,doOuterCV(i))
+# }
+for(r in res){
+	results = rbind(results,r)
 }
-#for(r in res){
-#	results = rbind(results,r)
-#}
 results = results[order(results[,1]),]
 filename = paste(outid,'_results.txt', sep='')
 write.csv(results,file=filename)

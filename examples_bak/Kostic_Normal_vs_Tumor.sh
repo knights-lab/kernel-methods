@@ -1,3 +1,0 @@
-#!/bin/bash
-echo hello
-Rscript src/runKerns.r 'data/mapping/Kostic_colorectal_cancer_fusobacterium_study_1457_mapping_file.txt' 'data/otu/Kostic_colorectal_cancer_fusobacterium_study_1457_gg_ref_13_8.txt' 'data/unifrac/weighted_unifrac_Kostic_colorectal_cancer_fusobacterium_study_1457_gg_ref_13_8.txt' 'data/bray_curtis/bray_curtis_Kostic_colorectal_cancer_fusobacterium_study_1457_gg_ref_13_8_L6.txt' "" 'ORIGINAL_DIAGNOSIS' "c('Normal')" "c('Tumor')" "results/Kostic_NormalVsTumor"

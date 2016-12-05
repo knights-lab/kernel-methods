@@ -82,17 +82,18 @@ doOuterCV = function(n){
 	  custom.data = list()
 	  # x is some subset of the data, becuase the tune function
 	  # does its own cross validation.
-	  # it has all the distances we need,
+	  # it has all the distances we need (it has more than we need,cuz columns include distances to holdout points),
 	  # but we have to grab the same training set of the columns 
 	  # and align them with the rows
 	  # because apparently they get scrambled
 	  training.ids = intersect(rownames(x),colnames(x))
 	  training.set = x[training.ids,training.ids]
-	  # P is k-dimensional PCoA matrix of training samples only
+	  # P is k-dimensional PCoA matrix of only training samples
 	  P = cmdscale(training.set,k=rest.of.args$pc.k)
 	  custom.data[['pc.k']] = rest.of.args$pc.k
 	  custom.data[['ref.pcoa']] = P
 	  custom.data[['ref.dist']] = x
+	  custom.data[['full.dist']] = rest.of.args$fullDist
 	  return(custom.data)
 	}
 	kernFunTrain = function(x,model,...){
@@ -110,42 +111,16 @@ doOuterCV = function(n){
 	  # of only the training samples. 
 	  train.ids = rownames(model$customData$ref.dist)
 	  test.ids = rownames(x)
-	  #can reconstruct D from holdout & reference training set
-	  D = rbind(model$customData$ref.dist, x)
-	  # P is PCoA matrix of training samples only
-	  P = model$customData$ref.pcoa
-	  # project new samples into PCoA space, preserving original
-	  # distances best we can
-	  transformed.samples = PCoPD(P,D,train.ids,test.ids)
-	  #want similarity matrix of testing samples to training samples
-	  new.P = rbind(P,transformed.samples)
-	  new.P.dist = as.matrix(dist(new.P))
+	  D = model$customData$full.dist[c(train.ids,test.ids),c(train.ids,test.ids)]
+	  #Just run PCoA on the whole thing (WARNING: information leak)
+	  new.P = cmdscale(D, model$customData$pc.k)
+	  #want similarity matrix
+	  new.P.dist = 1-as.matrix(dist(new.P))
 	  test.set = new.P.dist[test.ids,train.ids]
 	  return(test.set)
 	}
-	knnMakeDist = function(x,model,...){
-	  rest.of.args = list(...)
-	  # want to make full distance matrix, but pcoa must only be performed on 
-	  # training samples
-    train.ids = rownames(model$customData$ref.dist)
-    test.ids = rownames(x)
-    #can reconstruct D from holdout & reference training set
-    D = rbind(model$customData$ref.dist, x)
-    # P is PCoA matrix of training samples only
-    P = model$customData$ref.pcoa
-    # project new samples into PCoA space, preserving original
-    # distances best we can
-    transformed.samples = PCoPD(P,D,train.ids,test.ids)
-    #want similarity matrix of testing samples to training samples
-    new.P = rbind(P,transformed.samples)
-    new.P.dist = as.matrix(dist(new.P))
-    #want to hand the whole set instead of just training samples
-    return(new.P.dist)
-	}
-	pc.svm.model = invisible(tune( ranges = list(kernel='custom',C=2^(-2:3),pc.k = seq(2,20,2) ),kernelCustomData=kernCustomData, kernelFunTrain = kernFunTrain, kernelFunPredict = kernFunPredict, svm.model, pc.training.samples,pc.training.outcomes)$best.model)
-	print(paste('post svm tuning in fold ',n))
-	
-
+  pc.svm.model = invisible(tune( ranges = list(kernel='custom',C=2^(-2:3),pc.k = seq(2,20,2) ),kernelCustomData=kernCustomData, kernelFunTrain = kernFunTrain, kernelFunPredict = kernFunPredict, fullDist=uni.dist, svm.model, pc.training.samples,pc.training.outcomes)$best.model)
+  print(paste('post svm tuning in fold ',n))
 	svm.prediction = predict(pc.svm.model,pc.validation.samples)
 	print(paste('post svm prediction in fold ',n))
 	levels(svm.prediction) = union(levels(svm.prediction),levels(pc.validation.outcomes))
@@ -156,14 +131,30 @@ doOuterCV = function(n){
 	results = rbind(results, c(paste('SVM.pc.uni',sep=''),pf$TP,pf$TN,pf$FP,pf$FN, pf$f1, pf$mcc, NA, NA, NA, paste('k:',pc.svm.model$customData$pc.k,'C:',pc.svm.model$svm@param$C)))
 	#KNN
 	print('--knn')
-	pc.knn.model = tune(ranges = list(k=seq(1:20),pc.k=seq(2,20,2)), customKernel = knnMakeDist, customData=kernCustomData, knn.dist, pc.training.samples,pc.training.outcomes)$best.model
+	knnMakeDist = function(x,model,...){
+	  rest.of.args = list(...)
+	  # now we have some new data we need to predict,
+	  # but we need to transform it into the pcoa space
+	  # of only the training samples. 
+	  train.ids = rownames(model$customData$ref.dist)
+	  test.ids = rownames(x)
+	  D = model$customData$full.dist[c(train.ids,test.ids),c(train.ids,test.ids)]
+	  #Just run PCoA on the whole thing (WARNING: information leak)
+	  new.P = cmdscale(dist(D), model$customData$pc.k)
+	  #want distance matrix
+	  new.P.dist = as.matrix(dist(new.P))
+	  #want to hand the whole set instead of just training samples
+	  new.P.dist = new.P.dist[c(train.ids,test.ids),train.ids]
+	  return(new.P.dist)
+	}	
+	pc.knn.model = tune(ranges = list(k=seq(1:20),pc.k=seq(2,20,2)), customKernel = knnMakeDist, customData=kernCustomData, fullDist=uni.dist, knn.dist, pc.training.samples,pc.training.outcomes)$best.model
 	knn.prediction = as.factor(predict(pc.knn.model,rbind(pc.training.samples,pc.validation.samples)))
 	knn.pc.validation.outcomes = pc.validation.outcomes
   levels(knn.prediction) = union(levels(knn.prediction),levels(pc.validation.outcomes))
 	levels(knn.pc.validation.outcomes) = union(levels(knn.prediction),levels(pc.validation.outcomes))
 	pf = performance(knn.prediction,knn.pc.validation.outcomes)
 	
-	results = rbind(results, c(paste('KNN.pc.uni',sep=''),pf$TP,pf$TN,pf$FP,pf$FN, pf$f1, pf$mcc, NA,NA,NA, paste('k:',uni.knn.model$k,'pc.k:',uni.knn.model$customData$pc.k)))
+	results = rbind(results, c(paste('KNN.pc.uni',sep=''),pf$TP,pf$TN,pf$FP,pf$FN, pf$f1, pf$mcc, NA,NA,NA, paste('k:',pc.knn.model$k,'pc.k:',pc.knn.model$customData$pc.k)))
 	#pc.uni RF
 	print('--rf')
 	pc.uni.rf = randomForest(pc.training.samples,uni.training.outcomes)
@@ -269,7 +260,6 @@ doOuterCV = function(n){
 	print('RAW OTU')
 	#-------
 	
-	print('--rf')
 	#grab the holdout
 	#holdout.logic = 1:nrow(otus) %in% otu.sampler[inc:((inc+otu.part)-1)]
 	holdout = otus[holdout.logic,]
@@ -293,10 +283,9 @@ doOuterCV = function(n){
 		levels(svm.otu.validation.outcomes) = union(levels(svm.prediction),levels(otu.validation.outcomes))
 		pf = performance(svm.prediction,svm.otu.validation.outcomes)
 		results = rbind(results, c(paste('SVM.',kern,sep=''),pf$TP,pf$TN,pf$FP,pf$FN, pf$f1, pf$mcc, NA, NA, NA, paste('C:',otu.svm.model$svm@param$C)))
-	
-	
 	}
 	#RF
+	print('--rf')
 	otu.rf = randomForest(otu.training.samples,otu.training.outcomes)
 	rf.prediction = predict(otu.rf, otu.validation.samples)
 	levels(rf.prediction) = union(levels(rf.prediction),levels(otu.validation.outcomes))

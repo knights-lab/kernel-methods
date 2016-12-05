@@ -22,3 +22,4 @@ data/unifrac filter=lfs diff=lfs merge=lfs -text
 data/updated_map_america_mature_lean_obese.txt filter=lfs diff=lfs merge=lfs -text
 data/Yatsunenko_america_mature_lean_obese.txt filter=lfs diff=lfs merge=lfs -text
 data/Yatsunenko_Taxa filter=lfs diff=lfs merge=lfs -text
+data/Cho[[:space:]]2012[[:space:]]-[[:space:]]L7.txt filter=lfs diff=lfs merge=lfs -text

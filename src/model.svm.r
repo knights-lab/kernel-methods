@@ -16,12 +16,13 @@ svm.model = function(x,y,kernel,...){
 	  model[['customData']] = rest.of.args$kernelCustomData(x,model,...)
 	  model[['customKernelTrain']] = rest.of.args$kernelFunTrain
 		model[['customKernelPredict']] = rest.of.args$kernelFunPredict
+		model[['fullDist']] = rest.of.args$fullDist
 		x = as.kernelMatrix(model$customKernelTrain(x, model, ...))
 		
 	}
 	model[['kernel']] = kernel
 	#print(length(y))
-	model[['svm']] <- ksvm(x,y,kernel=model$kernel,...)
+	model[['svm']] <- ksvm(x,y,kernel=model$kernel,kpar=list(),...)
 	class(model) <- "svm.model"
 	return(model)
 }
