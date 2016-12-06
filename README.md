@@ -32,7 +32,7 @@ Where:
 Note that these are all **required, positional** arguments. All data file paths are required. If you wish not to supply a value (for example, no filters), pass in a blank value: ""
 
 A complete example is shown below. This particular call runs our predictive performance sweep on GlobalGut data, where the classification test is whether or not the individual is from the United States. Persons less than 3 years of age are filtered out:
-* `Rscript src/runKerns.r 'data/mapping/Yatsunenko_global_gut_study_850_mapping_file.txt' 'data/Yatsunenko_Taxa/Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt' 'data/unifrac/weighted_unifrac_Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt' 'data/bray_curtis/bray_curtis_Yatsunenko_global_gut_study_850_gg_ref_13_8_L6.txt' "list(op='>', var='AGE', val=50)" 'COUNTRY' "c('GAZ:United States of America')" "c('GAZ:Malawi', 'GAZ:Venezuela')" "results/GlobalGut_WesternVsNon_AgeOver3"`
+* `Rscript src/runKerns.r 'data/mapping/Yatsunenko_global_gut_study_850_mapping_file.txt' 'data/Yatsunenko_Taxa/Yatsunenko_global_gut_study_850_gg_ref_13_8_L7.txt' 'data/unifrac/weighted_unifrac_Yatsunenko_global_gut_study_850_gg_ref_13_8.txt' 'data/bray_curtis/bray_curtis_Yatsunenko_global_gut_study_850_gg_ref_13_8_L6.txt' "list(op='>', var='AGE', val=50)" 'COUNTRY' "c('GAZ:United States of America')" "c('GAZ:Malawi', 'GAZ:Venezuela')" "results/GlobalGut_WesternVsNon_AgeOver3"`
 
 ##About this Repo
 Refer to individual folders for description / explanation of content:
